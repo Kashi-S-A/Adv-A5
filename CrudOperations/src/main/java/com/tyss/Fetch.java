@@ -2,43 +2,41 @@ package com.tyss;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Insert {
+public class Fetch {
 
 	public static void main(String[] args) {
-
 		String driver = "org.postgresql.Driver";
 		String url = "jdbc:postgresql://localhost:5432/test?user=postgres&password=root";
 
 		try {
-			// step 1 : Load the driver
 			Class.forName(driver);
 
-			System.out.println("driver is loaded");
-
-			// step 2 : Create connection
 			Connection connection = DriverManager.getConnection(url);
-			
-			System.out.println("connection is created");
-			
-			//step 3 : Create Statement
+
 			Statement stm = connection.createStatement();
-			
-			System.out.println("statement is created");
-			
-			String insert = "INSERT INTO user_info VALUES(5,'Dinga','dinga@gmail.com',56765)";
-			
-			//step 4 : Execute the query
-			boolean result = stm.execute(insert);
-			System.out.println(result);
-			
-			//step 5 : Close the connection
+
+			String select = "SELECT * FROM user_info";
+
+			ResultSet rs = stm.executeQuery(select);
+			System.out.println("============Users==============");
+
+			while (rs.next()) {
+
+				System.out.println(rs.getInt(1));
+				System.out.println(rs.getString(2));
+				System.out.println(rs.getString(3));
+				System.out.println(rs.getLong(4));
+
+				System.out.println("====================");
+			}
+
 			connection.close();
-			
-			System.out.println("record is inserted and connection is closed");
-			
+
+			System.out.println("records fetched and conn is closed");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
