@@ -17,9 +17,9 @@ public class Delete {
 
 			Statement stm = connection.createStatement();
 
-			String delete = "DELETE FROM user_info WHERE uid=1";
+			String delete = "DELETE FROM user_info WHERE name='Manga'";
 
-			System.out.println(stm.execute(delete));
+			System.out.println(stm.executeUpdate(delete));
 
 			connection.close();
 

@@ -19,20 +19,31 @@ public class Fetch {
 
 			Statement stm = connection.createStatement();
 
-			String select = "SELECT * FROM user_info";
+			String select = "SELECT * FROM user_info WHERE uid=30";
 
-			ResultSet rs = stm.executeQuery(select);
-			System.out.println("============Users==============");
+			int rs = stm.executeUpdate(select);
+			
+//			System.out.println("============User==============");
+//
+//			if (rs.next()) {
+//				System.out.println(rs.getInt(1));
+//				System.out.println(rs.getString(2));
+//				System.out.println(rs.getString(3));
+//				System.out.println(rs.getLong(4));
+//
+//			} else {
+//				System.out.println("Not found");
+//			}
 
-			while (rs.next()) {
-
-				System.out.println(rs.getInt(1));
-				System.out.println(rs.getString(2));
-				System.out.println(rs.getString(3));
-				System.out.println(rs.getLong(4));
-
-				System.out.println("====================");
-			}
+//			while (rs.next()) {
+//
+//				System.out.println(rs.getInt(1));
+//				System.out.println(rs.getString(2));
+//				System.out.println(rs.getString(3));
+//				System.out.println(rs.getLong(4));
+//
+//				System.out.println("====================");
+//			}
 
 			connection.close();
 

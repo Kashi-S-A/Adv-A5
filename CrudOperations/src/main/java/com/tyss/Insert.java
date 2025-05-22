@@ -20,25 +20,25 @@ public class Insert {
 
 			// step 2 : Create connection
 			Connection connection = DriverManager.getConnection(url);
-			
+
 			System.out.println("connection is created");
-			
-			//step 3 : Create Statement
+
+			// step 3 : Create Statement
 			Statement stm = connection.createStatement();
-			
+
 			System.out.println("statement is created");
-			
-			String insert = "INSERT INTO user_info VALUES(5,'Dinga','dinga@gmail.com',56765)";
-			
-			//step 4 : Execute the query
-			boolean result = stm.execute(insert);
-			System.out.println(result);
-			
-			//step 5 : Close the connection
+
+			String insert = "INSERT INTO user_info VALUES(10,'Laxman','laxman@gmail.com',65678)";
+
+			// step 4 : Execute the query
+			int a = stm.executeUpdate(insert);
+			System.out.println(a);
+
+			// step 5 : Close the connection
 			connection.close();
-			
+
 			System.out.println("record is inserted and connection is closed");
-			
+
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

@@ -18,9 +18,11 @@ public class Update {
 			
 			Statement stm = connection.createStatement();
 			
-			String update= "UPDATE user_info SET name='Pengi XYZ' WHERE uid=2";
+			String update= "UPDATE user_info SET phone=123 WHERE name='Manga'";
 			
-			stm.execute(update);
+			int result = stm.executeUpdate(update);
+			
+			System.out.println("The no of rows affectec : "+result);
 			
 			connection.close();
 			
