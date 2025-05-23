@@ -10,48 +10,37 @@ public class Fetch {
 
 	public static void main(String[] args) {
 		String driver = "org.postgresql.Driver";
-		String url = "jdbc:postgresql://localhost:5432/test?user=postgres&password=root";
+		String url = "jdbc:postgresql://localhost:5432/test?user=postgres&password=roo";
+
+		Connection connection = null;
 
 		try {
 			Class.forName(driver);
+			System.out.println("driver is loaded");
 
-			Connection connection = DriverManager.getConnection(url);
+			connection = DriverManager.getConnection(url);
+			System.out.println("connection is created");
 
 			Statement stm = connection.createStatement();
+			System.out.println("statement is created");
 
-			String select = "SELECT * FROM user_info WHERE uid=30";
+			String select = "SELECT * FROM user_inf";
 
-			int rs = stm.executeUpdate(select);
-			
-//			System.out.println("============User==============");
-//
-//			if (rs.next()) {
-//				System.out.println(rs.getInt(1));
-//				System.out.println(rs.getString(2));
-//				System.out.println(rs.getString(3));
-//				System.out.println(rs.getLong(4));
-//
-//			} else {
-//				System.out.println("Not found");
-//			}
+			stm.executeQuery(select);
 
-//			while (rs.next()) {
-//
-//				System.out.println(rs.getInt(1));
-//				System.out.println(rs.getString(2));
-//				System.out.println(rs.getString(3));
-//				System.out.println(rs.getLong(4));
-//
-//				System.out.println("====================");
-//			}
-
-			connection.close();
-
-			System.out.println("records fetched and conn is closed");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (connection!=null) {
+					connection.close();
+					System.out.println("conn is closed");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
